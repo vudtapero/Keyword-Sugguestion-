@@ -131,7 +131,7 @@ public class Main extends JFrame {
 						sb = new StringBuilder();
 						for (String alphabet : DataUtils.ALPHABET) {
 							String keyword = userText.getText() + " " + alphabet;
-							String data = ConnectionUtils.getSugguestion("hi", "", keyword);
+							String data = ConnectionUtils.getSugguestion(languageCode, "", keyword);
 							List<String> results = DataUtils.parseData(data);
 							for (String result : results) {
 								sb.append(result + "\n");
