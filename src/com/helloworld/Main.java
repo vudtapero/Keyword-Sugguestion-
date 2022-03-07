@@ -103,6 +103,7 @@ public class Main extends JFrame {
 		radioPanel.add(radioBtnEng);
 		radioPanel.add(radioBtnIndia);
 		radioPanel.add(radioBtnSpanish);
+		controlPanel.add(radioPanel);
 
 		// Result text area
 		textArea = new JTextArea(5, 10);
