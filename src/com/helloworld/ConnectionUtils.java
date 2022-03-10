@@ -32,7 +32,7 @@ public class ConnectionUtils {
 
 
 	public static String getSugguestion(String language, String country, String keyword) throws IOException, KeyManagementException, NoSuchAlgorithmException {
-		System.out.println("Searching: "+keyword);
+		System.out.println("Searching: "+keyword +" language: "+language+" ; country: "+country);
 		String address = String.format("https://play.google.com/_/PlayStoreUi/data/batchexecute?rpcids=IJ4APc&f.sid=-697906427155521722&bl=boq_playuiserver_20190903.08_p0&hl=%s&gl=%s&authuser&soc-app=121&soc-platform=1&soc-device=1&_reqid=1065213", language, country);
 		String rawData = "f.req=%5B%5B%5B%22IJ4APc%22%2C%22%5B%5Bnull%2C%5B%5C%22$___PH___%5C%22%5D%2C%5B10%5D%2C%5B2%5D%2C4%5D%5D%22%5D%5D%5D".replace(PLACE_HOLDER, keyword);
 		return post(address, rawData);
@@ -60,7 +60,7 @@ public class ConnectionUtils {
         HttpsURLConnection.setDefaultHostnameVerifier(allHostsValid);
 		
         //Create request
-		URL obj = new URL("https://play.google.com/_/PlayStoreUi/data/batchexecute?rpcids=IJ4APc&f.sid=-697906427155521722&bl=boq_playuiserver_20190903.08_p0&hl=en&gl=us&authuser&soc-app=121&soc-platform=1&soc-device=1&_reqid=1065213");
+		URL obj = new URL(address);
 		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 		con.setRequestMethod("POST");
 		con.setRequestProperty("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.155 Safari/537.36");
