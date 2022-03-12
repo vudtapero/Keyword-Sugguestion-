@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.GraphicsEnvironment;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -53,6 +55,11 @@ public class Main extends JFrame {
 		userText = new JTextField(50);
 		userText.addActionListener(new AbstractAction() {
 
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				doSearch();
@@ -84,6 +91,8 @@ public class Main extends JFrame {
 		// Result text area
 		textArea = new JTextArea(5, 10);
 		textArea.setAutoscrolls(true);
+		Font font = new Font("Times-Roman", Font.PLAIN, 16);
+		textArea.setFont( font.deriveFont( 16.0f) );
 		JScrollPane scrollPane = new JScrollPane(textArea);
 
 		// Show UI
@@ -154,7 +163,7 @@ public class Main extends JFrame {
 							textArea.setText(sb.toString());
 							
 							//Search for keyword + alphabet character
-							for (String alphabet : DataUtils.ALPHABET) {
+							for (String alphabet : DataUtils.getAlphabet(languageCode)) {
 								String keyword = keywordInlist.trim() + " " + alphabet;
 								String data = ConnectionUtils.getSugguestion(languageCode, countryCode, keyword);
 								List<String> results = DataUtils.parseData(data);
@@ -240,6 +249,14 @@ public class Main extends JFrame {
 	public static void main(String[] args) {
 		Main m = new Main();
 		m.init();
+		
+		GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment ();
+        Font [] fonts = ge.getAllFonts ();
+        for (Font font : fonts) {
+        	System.out.println(font.getFontName());
+        }
+		
+
 	}
 
 }
